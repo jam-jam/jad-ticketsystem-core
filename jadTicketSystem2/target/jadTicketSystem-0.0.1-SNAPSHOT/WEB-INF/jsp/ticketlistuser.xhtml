@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Ticket List</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:dataTable rules="all" value="${ticketManagementBean.ticketList}" var="item" cellpadding="5" >
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Title"></h:outputText></f:facet>
+                    <h:outputText value="#{item.title}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Description"></h:outputText> </f:facet>
+                    <h:outputText value="#{item.description}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Category"></h:outputText></f:facet>
+                    <h:outputText value="#{item.category}"></h:outputText>
+                </h:column>               
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Action"></h:outputText> </f:facet>
+                    <h:commandLink value="Solution" action="#{ticketManagementBean.solution(item.id)}"></h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
+
