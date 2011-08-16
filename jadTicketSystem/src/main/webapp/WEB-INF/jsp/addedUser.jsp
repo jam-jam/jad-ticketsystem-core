@@ -14,7 +14,7 @@
 
 <p>You have added a new account at <%= new java.util.Date() %></p>
 
-<c:url var="mainUrl" value="/jadTicketSystem/main/users" />
+<c:url var="mainUrl" value="/accounts/account/list.htm" />
 <p>Return to <a href="${mainUrl}">User List</a></p>
 
 </body>

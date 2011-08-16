@@ -23,7 +23,7 @@ import be.intecbrussel.jad.services.AccountService;
  */
 
 @Controller
-@RequestMapping("/account")
+@RequestMapping("/accounts")
 public class AccountController {
 
 //protected static Logger logger = Logger.getLogger("controller");
@@ -36,19 +36,21 @@ public class AccountController {
 	 * 
 	 * @return the name of the JSP page
 	 */
-    @RequestMapping(value = "/accounts", method = RequestMethod.GET)
+    @RequestMapping(value = "/account/list", method = RequestMethod.GET)
     public String getUsers(Model model) {
     	
     	//logger.debug("Received request to show all users");
     	
+    	System.out.println("Received request to show all accounts");
+    	
     	// Retrieve all users by delegating the call to AccountService
     	List<Account> users = userService.getAll();
     	
-    	// Attach persons to the Model
+    	// Attach accounts to the Model
     	model.addAttribute("users", users);
     	
     	// This will resolve to /WEB-INF/jsp/userslist.jsp
-    	return "userslist";
+    	return "listUsers";
 	}
     
     /**
@@ -56,12 +58,13 @@ public class AccountController {
      * 
      * @return the name of the JSP page
      */
-    @RequestMapping(value = "/users/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/account/add", method = RequestMethod.GET)
     public String getAdd(Model model) {
     	//logger.debug("Received request to show add page");
     
     	// Create new Account and add to model
     	// This is the formBackingOBject
+    	System.out.println("Received request to show add account page");
     	model.addAttribute("userAttribute", new Account());
 
     	// This will resolve to /WEB-INF/jsp/adduser.jsp
@@ -74,7 +77,7 @@ public class AccountController {
      * 
      * @return  the name of the JSP page
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/account/add", method = RequestMethod.POST)
     public String add(@ModelAttribute("userAttribute") Account user) {
 		//logger.debug("Received request to add new user");
 		
@@ -82,6 +85,8 @@ public class AccountController {
 		
     	System.out.println("inserting the new user from AC");
 		// Call AccountService to do the actual insert
+    	
+    	
 		userService.add(user);
 		
 		System.out.println("New user inserted from AC");
@@ -96,7 +101,7 @@ public class AccountController {
      * 
      * @return  the name of the JSP page
      */
-    @RequestMapping(value = "/users/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/account/delete", method = RequestMethod.GET)
     public String delete(@RequestParam(value="id", required=true) Long id, 
     										Model model) {
    
@@ -109,7 +114,7 @@ public class AccountController {
 		model.addAttribute("id", id);
     	
     	// This will resolve to /WEB-INF/jsp/deleteduser.jsp
-		return "deleteduser";
+		return "deletedUser";
 	}
     
     /**
@@ -117,7 +122,7 @@ public class AccountController {
      * 
      * @return the name of the JSP page
      */
-    @RequestMapping(value = "/users/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/account/edit", method = RequestMethod.GET)
     public String getEdit(@RequestParam(value="id", required=true) Long id,  
     										Model model) {
     	//logger.debug("Received request to show edit page");
@@ -126,7 +131,7 @@ public class AccountController {
     	model.addAttribute("userAttribute", userService.get(id));
     	
     	// This will resolve to /WEB-INF/jsp/edituser.jsp
-    	return "edituser";
+    	return "editUser";
 	}
     
     /**
@@ -135,7 +140,7 @@ public class AccountController {
      * 
      * @return  the name of the JSP page
      */
-    @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/account/edit", method = RequestMethod.POST)
     public String saveEdit(@ModelAttribute("userAttribute") Account user, 
     										   @RequestParam(value="id", required=true) Long id, 
     												Model model) {
@@ -154,7 +159,7 @@ public class AccountController {
 		model.addAttribute("id", id);
 		
     	// This will resolve to /WEB-INF/jsp/editeduser.jsp
-		return "editeduser";
+		return "editedUser";
 	}
     
 

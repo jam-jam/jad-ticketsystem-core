@@ -22,6 +22,7 @@
     <servlet-name>SpringDispatcherServlet</servlet-name>
     <url-pattern>*.htm</url-pattern>
   </servlet-mapping>
+  
 <!--   <servlet> -->
 <!--     <servlet-name>Faces Servlet</servlet-name> -->
 <!--     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class> -->

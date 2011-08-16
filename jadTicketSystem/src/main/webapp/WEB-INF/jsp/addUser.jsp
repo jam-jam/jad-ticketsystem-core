@@ -12,22 +12,38 @@
 
 <h1>Create New User</h1>
 
-<form:form commandName="userAttribute" method="POST" action="account.htm">
+<form:form commandName="userAttribute" method="POST" action="add.htm">
 	<table>
 		<tr>
-			<td><form:label path="firstname">First Name:</form:label></td>
-			<td><form:input path="firstname"/></td>
+			<td><form:label path="firstName">First Name:</form:label></td>
+			<td><form:input path="firstName"/></td>
 		</tr>
 
 		<tr>
-			<td><form:label path="lastname">Last Name:</form:label></td>
-			<td><form:input path="lastname"/></td>
+			<td><form:label path="lastName">Last Name:</form:label></td>
+			<td><form:input path="lastName"/></td>
 		</tr>
 		
 		<tr>
-			<td><form:label path="username">User Name:</form:label></td>
-			<td><form:input path="username"/></td>
+			<td><form:label path="userName">User Name:</form:label></td>
+			<td><form:input path="userName"/></td>
 		</tr>
+		
+		<tr>
+			<td><form:label path="password">Password:</form:label></td>
+			<td><form:password path="password"/></td>
+		</tr>
+		
+<!-- 		<tr> -->
+<%-- 			<td><form:label path="confirm">Confirm Password:</form:label></td> --%>
+<%-- 			<td><form:password path="confirm"/></td> --%>
+<!-- 		</tr> -->
+		
+		<tr>
+			<td><form:label path="email">Email:</form:label></td>
+			<td><form:input path="email"/></td>
+		</tr>
+		
 	</table>
 	
 	<input type="submit" value="Save" />

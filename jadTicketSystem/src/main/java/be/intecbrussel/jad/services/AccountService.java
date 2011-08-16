@@ -102,8 +102,8 @@ public class AccountService{
 		Account existingUser = (Account) session.get(Account.class, user.getId());
 		
 		// Assign updated values to this account
-		existingUser.setFirstname(user.getFirstname());
-		existingUser.setLastname(user.getLastname());
+		existingUser.setFirstName(user.getFirstName());
+		existingUser.setLastName(user.getLastName());
 
 
 		// Save updates
