@@ -125,12 +125,14 @@ public class AccountController {
     @RequestMapping(value = "/account/edit", method = RequestMethod.GET)
     public String getEdit(@RequestParam(value="id", required=true) Long id,  
     										Model model) {
-    	//logger.debug("Received request to show edit page");
+    	//logger.debug("Received request to show edit account page");
     
+    	System.out.println("Received request to show edit account page");
+    	
     	// Retrieve existing user and add to model
     	model.addAttribute("userAttribute", userService.get(id));
     	
-    	// This will resolve to /WEB-INF/jsp/edituser.jsp
+    	// This will resolve to /WEB-INF/jsp/editUser.jsp
     	return "editUser";
 	}
     
@@ -144,8 +146,10 @@ public class AccountController {
     public String saveEdit(@ModelAttribute("userAttribute") Account user, 
     										   @RequestParam(value="id", required=true) Long id, 
     												Model model) {
-    	//logger.debug("Received request to update user");
+    	//logger.debug("Received request to update account");
     
+    	System.out.println("Received request to update account");
+    	
     	// The "userAttribute" model has been passed to the controller from the JSP
     	
     	// We manually assign the id because we disabled it in the JSP page
@@ -158,7 +162,8 @@ public class AccountController {
     	// Add id reference to Model
 		model.addAttribute("id", id);
 		
-    	// This will resolve to /WEB-INF/jsp/editeduser.jsp
+		System.out.println("Account updated");
+    	// This will resolve to /WEB-INF/jsp/editedUser.jsp
 		return "editedUser";
 	}
     

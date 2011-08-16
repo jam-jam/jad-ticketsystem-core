@@ -10,7 +10,7 @@
 <body>
 <h1>Accounts</h1>
 
-<c:url var="addUrl" value="/account/add" />
+<c:url var="addUrl" value="/accounts/account/add.htm" />
 <table style="border: 1px solid; width: 500px; text-align:center">
 	<thead style="background:#fcf">
 		<tr>
@@ -25,8 +25,8 @@
 	</thead>
 	<tbody>
 	<c:forEach items="${users}" var="user">
-			<c:url var="editUrl" value="/account/edit?id=${usesr.id}" />
-			<c:url var="deleteUrl" value="/account/delete?id=${user.id}" />
+			<c:url var="editUrl" value="/accounts/account/edit.htm?id=${usesr.id}" />
+			<c:url var="deleteUrl" value="/accounts/account/delete.htm?id=${user.id}" />
 		<tr>
 			<td><c:out value="${user.firstName}" /></td>
 			<td><c:out value="${user.lastName}" /></td>
