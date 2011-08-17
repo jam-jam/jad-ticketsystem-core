@@ -49,4 +49,13 @@ public class TicketService  {
 		// Retrieve all
 		return  query.list();
 	}
+	public Ticket get( Long id ) {
+		// Retrieve session from Hibernate
+		Session session = sessionFactory.getCurrentSession();
+		
+		// Retrieve existing person first
+		Ticket ticket = (Ticket) session.get(Ticket.class, id);
+		
+		return ticket;
+	}
 }
