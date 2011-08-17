@@ -9,9 +9,8 @@
 </head>
 <body>
 	<!--title, category, omschrijving,  submit button -->
-
-	<form:form commandName="testForm" action="test.htm"> 
-	Title : <form:input path="title" value="${ticketToEdit.title}"/>
+	<form:form commandName="testForm" action="test.htm" > 
+	Title : <form:input path="title" value="${ticketToEdit.title}" />
 		<br />
 		Category : <form:select path="category">
 			<form:option value="-">-- Make a selection --</form:option>
@@ -22,7 +21,7 @@
 		<br />
 		<input type="submit" value="Submit" />
 		<br />
-		Date : <form:input path="date" value="${ticketToEdit.submitDate}" />
+<%-- 		Date : <form:input path="date" value="${ticketToEdit.submitDate}" /> --%>
 		
 	</form:form>
 </body>

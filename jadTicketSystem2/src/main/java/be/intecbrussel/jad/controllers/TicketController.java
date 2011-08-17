@@ -67,8 +67,8 @@ public class TicketController {
 		return "ticketlist";
 	}
 
-	@RequestMapping(value = "editTicket")
-	public String editTicket(@RequestParam("aidi") Long id, Model model) {
+	@RequestMapping(method = RequestMethod.GET, value = "editTicket")
+	public String editTicket(@RequestParam("aidi") Long id, Model model, @ModelAttribute("testForm")Ticket tick) {
 		System.out.println("In edit Ticket mensen");
 		Ticket ticket = ticketService.get(id);
 		System.out.println(ticket.getTitle());
