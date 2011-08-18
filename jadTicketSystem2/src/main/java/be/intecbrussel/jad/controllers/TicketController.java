@@ -55,7 +55,6 @@ public class TicketController {
 
 		ticket.setSubmitDate(new Date());
 		ticketService.add(ticket);
-		System.out.println(ticket.getTitle());
 		return "newTicketConfirmed";
 	}
 
@@ -68,19 +67,24 @@ public class TicketController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "editTicket")
-	public String editTicket(@RequestParam("aidi") Long id, Model model, @ModelAttribute("testForm")Ticket tick) {
-		System.out.println("In edit Ticket mensen");
-		Ticket ticket = ticketService.get(id);
+	public String editTicket(@RequestParam("aidi") Long id, Model model, @ModelAttribute("ticketToEdit")Ticket ticket) {
+		ticket = ticketService.get(id);
+		model.addAttribute("ticketToEdit",ticket);
 		System.out.println(ticket.getTitle());
-		model.addAttribute("ticketToEdit", ticket);
+		System.out.println("Id1 : " + ticket.getId());
+		
+		
 		return "editTicket";
 
 	}
 
-	@RequestMapping(value = "/test")
-	public String leavemealone(@ModelAttribute("testForm") Ticket ticket,
+	@RequestMapping(method= RequestMethod.GET, value = "saveEditTicket")
+	public String saveEditedTicket(@ModelAttribute("ticketToEdit") Ticket ticket,@RequestParam("aido")Long id,
 			BindingResult br) {
-
-		return "please";
+		System.out.println(ticket.getDescription());
+		ticket.setId(id);
+		System.out.println("Id2 : "+ticket.getId());
+		ticketService.edit(ticket);
+		return "ticketList";
 	}
 }

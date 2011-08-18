@@ -58,4 +58,31 @@ public class TicketService  {
 		
 		return ticket;
 	}
+	public void edit(Ticket ticket) {
+		//logger.debug("Editing existing user");
+		
+		// Retrieve session from Hibernate
+		System.out.println("in edit ticket...");
+		Session session = sessionFactory.getCurrentSession();
+		
+		// Retrieve existing person via id
+		Ticket existingTicket = (Ticket) session.get(Ticket.class, ticket.getId());
+		System.out.println("getting the ticket...");
+		System.out.println("existing ticket description : "+existingTicket.getDescription());
+		
+		// Assign updated values to this account
+		existingTicket.setTitle(ticket.getTitle());
+		existingTicket.setDescription(ticket.getDescription());
+		System.out.println("existing ticket new description : " +existingTicket.getDescription());
+//		existingTicket.setCategory(ticket.getCategory());
+//		existingTicket.setContact(ticket.getContact());
+//		existingTicket.setEmployee(ticket.getEmployee());
+//		existingTicket.setResponse(ticket.getResponse());
+		existingTicket.setSolvedDate(ticket.getSolvedDate());
+//		existingTicket.setWaitingTime(ticket.getWaitingTime());
+
+		// Save updates
+		session.save(existingTicket);
+		System.out.println("Ticket edited");
+	}
 }
