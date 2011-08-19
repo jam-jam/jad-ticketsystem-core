@@ -36,27 +36,12 @@
 		<property name="password" value="1234"/>
 	</bean>
 	
-	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="ticketsystem" />
-		<property name="dataSource" ref="ds" />
-		<property name="persistenceProvider" >
-			<bean class="org.hibernate.ejb.HibernatePersistence" />
-		</property>
-	</bean>
-	
+		
 	<!-- Declare a transaction manager-->
 	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager" 
        			p:sessionFactory-ref="sessionFactory" />
 	
-	<bean id="tm" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="emf" />
-	</bean>
-	
-<!-- 	<bean id="tt" class="org.springframework.transaction.support.TransactionTemplate"> -->
-<!-- 		<property name="transactionManager" ref="tm" /> -->
-<!-- 	</bean> -->
-	
-	<tx:annotation-driven transaction-manager="tm"/>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />

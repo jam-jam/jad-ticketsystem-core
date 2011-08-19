@@ -9,7 +9,7 @@
         <h:form>
             <a href="newTicket.htm">new Ticket</a><br/>
             <a href="newUser.htm">Add User</a><br/>
-            <a href="ticketlist.htm"="Ticket List" >List</a>
+            <a href="ticketlist.htm">Ticket List</a>
         </h:form>
     </h:body>
 </html>

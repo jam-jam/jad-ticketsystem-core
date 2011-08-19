@@ -78,13 +78,21 @@ public class TicketController {
 
 	}
 
-	@RequestMapping(method= RequestMethod.GET, value = "saveEditTicket")
-	public String saveEditedTicket(@ModelAttribute("ticketToEdit") Ticket ticket,@RequestParam("aido")Long id,
-			BindingResult br) {
+	@RequestMapping(method= RequestMethod.POST, value = "saveEditedTicket")
+	public String saveEditedTicket(@ModelAttribute("ticketToEdit") Ticket ticket,BindingResult br,@RequestParam("aido")Long id,Model model) {
 		System.out.println(ticket.getDescription());
 		ticket.setId(id);
 		System.out.println("Id2 : "+ticket.getId());
 		ticketService.edit(ticket);
-		return "ticketList";
+		goToTicketList(model);
+		return "ticketlist";
+	}
+	@RequestMapping(value="deleteTicket")
+	public String deleteTicket(@ModelAttribute("ticketToEdit")Ticket ticket,@RequestParam("aidi")Long id, Model model){
+		ticket.setId(id);
+		System.out.println("Deleting id :"+ticket.getId());
+		ticketService.delete(ticket.getId());
+		goToTicketList(model);
+		return "ticketlist";
 	}
 }

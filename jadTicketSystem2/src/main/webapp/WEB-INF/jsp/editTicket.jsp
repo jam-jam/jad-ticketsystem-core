@@ -9,7 +9,7 @@
 </head>
 <body>
 	<!--title, category, omschrijving,  submit button -->
-	<form:form commandName="ticketToEdit" action="saveEditTicket.htm?aido=${ticketToEdit.id}"> 
+	<form:form commandName="ticketToEdit"  action="saveEditedTicket.htm?aido=${ticketToEdit.id}"> 
 	Title : <form:input path="title" />
 		<br />
 <!-- 	Category : <select> -->
@@ -20,7 +20,7 @@
 	Description : 	
 	<form:textarea path="description" cols="20" rows="5"	/>
 	
-	<input type="submit" value="submit"/>
+	<input type="submit" value="Save changes"/>
 
 
 	</form:form>
