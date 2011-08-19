@@ -85,4 +85,16 @@ public class TicketService  {
 		session.save(existingTicket);
 		System.out.println("Ticket edited");
 	}
+	public void delete(Long id) {
+		//logger.debug("Deleting existing user");
+		
+		// Retrieve session from Hibernate
+		Session session = sessionFactory.getCurrentSession();
+		
+		// Retrieve existing person first
+		Ticket ticket  = (Ticket) session.get(Ticket.class, id);
+		
+		// Delete 
+		session.delete(ticket);
+	}
 }

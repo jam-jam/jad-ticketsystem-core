@@ -31,8 +31,8 @@
 <%-- <td><a href="${deleteUrl}">Delete</a></td> --%>
 <%-- <td><a href="${addUrl}">Add</a></td> --%>
 <td><a href="editTicket.htm?aidi=${ticket.id}">Edit</a></td>
-<td><a href=deleteTicket.htm>Delete</a></td>
-<td><a href=addTicket.htm>Add</a></td>
+<td><a href="deleteTicket.htm?aidi=${ticket.id}">Delete</a></td>
+<td><a href="newTicket.htm">Add</a></td>
 </tr>
 </c:forEach>
 </tbody>
