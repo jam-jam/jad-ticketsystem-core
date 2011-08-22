@@ -2,19 +2,23 @@ package be.intecbrussel.jad.model.entities;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author alig
  */
 @Entity
-@Table(name="tbTicket")
+@Table(name="tbTicket", schema = "TicketSystemDB")
 public class Ticket implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -27,16 +31,17 @@ public class Ticket implements Serializable {
     private String contact;//it is a end user
     private String employee;
     
-    private Timestamp datum;
-    private Timestamp datumSolution;
+    @Temporal(TemporalType.DATE)
+    private Date submitDate;
+    private Date solvedDate;
     private Long waitingTime;
 
-    public Timestamp getDatum() {
-        return datum;
+    public Date getSubmitDate() {
+        return submitDate;
     }
 
-    public void setDatum(Timestamp datum) {
-        this.datum = datum;
+    public void setSubmitDate(Date datum) {
+        this.submitDate = datum;
     }
 
     
@@ -126,12 +131,12 @@ public class Ticket implements Serializable {
         this.solved = solved;
     }
 
-    public Timestamp getDatumSolution() {
-        return datumSolution;
+    public Date getSolvedDate() {
+        return solvedDate;
     }
 
-    public void setDatumSolution(Timestamp datumSolution) {
-        this.datumSolution = datumSolution;
+    public void setSolvedDate(Date datumSolution) {
+        this.solvedDate = datumSolution;
     }
 
     public Long getWaitingTime() {
