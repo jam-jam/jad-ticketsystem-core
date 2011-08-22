@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.print.attribute.standard.DateTimeAtCompleted;
 
 /**
  * 
@@ -47,23 +50,29 @@ public class Account implements Serializable {
 	private Long id;
 
 	@Basic(optional = true)
-	private String firstname;
+	private String firstName;
 
 	@Basic(optional = true)
-	private String lastname;
+	private String lastName;
 
 	@Basic(optional = false)
-	private String username;
+	private String userName;
 
 	//@Basic(optional = false)
 	private String password;
 
+	@Basic(optional = false)
 	private String email;
-	private Boolean mustChangePassword;
-	private Boolean isSuspended;
-	private Boolean isSystem;
-	private Boolean isAdministrator;
-	private Date memberSince;
+	
+	private Boolean mustChangePassword= true;
+	
+	private Boolean isSuspended = false;
+	private Boolean isSystem = false;
+	private Boolean isAdministrator= false;
+	
+	@Temporal(TemporalType.DATE)
+	private Date memberSince = new Date();
+	private String comments;
 
 	public Long getId() {
 		return id;
@@ -73,20 +82,20 @@ public class Account implements Serializable {
 		this.id = id;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstName(String firstname) {
+		this.firstName = firstname;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastname) {
+		this.lastName = lastname;
 	}
 
 	public String getPassword() {
@@ -97,12 +106,12 @@ public class Account implements Serializable {
 		this.password = password;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String username) {
+		this.userName = username;
 	}
 
 	public String getEmail() {
@@ -145,11 +154,24 @@ public class Account implements Serializable {
 		this.isSystem = isSystem;
 	}
 
+	public Date getMemberSince() {
+		return memberSince;
+	}
+
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
 	public Account() {
 	}
 
 	public Account(String username, String password) {
-		setUsername(username);
+		setUserName(username);
 		setPassword(password);
 	}
 
@@ -175,7 +197,7 @@ public class Account implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.format("%s [%d]", getUsername(), getId());
+		return String.format("%s [%d]", getUserName(), getId());
 	}
 
 	public boolean isNew() {

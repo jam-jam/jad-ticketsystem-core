@@ -6,26 +6,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>User Registration</title>
+<title>Account Edition</title>
 </head>
 <body>
 
-<h1>Create New User</h1>
+<h1>Edit Account</h1>
 
-<form:form commandName="userAttribute" method="POST" action="add.htm">
+<c:url var="saveUrl" value="edit.htm?id=${userAttribute.id}" />
+<form:form modelAttribute="userAttribute" method="POST" action="${saveUrl}">
 	<table>
+		<tr>
+			<td><form:label path="id">Id:</form:label></td>
+			<td><form:input path="id" disabled="true"/></td>
+		</tr>
+	
 		<tr>
 			<td><form:label path="firstName">First Name:</form:label></td>
 			<td><form:input path="firstName"/></td>
 		</tr>
 
 		<tr>
-			<td><form:label path="lastName">Last Name:</form:label></td>
+			<td><form:label path="lastName">Last Name</form:label></td>
 			<td><form:input path="lastName"/></td>
 		</tr>
 		
 		<tr>
-			<td><form:label path="userName">User Name:</form:label></td>
+			<td><form:label path="userName">User Name</form:label></td>
 			<td><form:input path="userName"/></td>
 		</tr>
 		
@@ -34,22 +40,16 @@
 			<td><form:password path="password"/></td>
 		</tr>
 		
-<!-- 		<tr> -->
-<%-- 			<td><form:label path="confirm">Confirm Password:</form:label></td> --%>
-<%-- 			<td><form:password path="confirm"/></td> --%>
-<!-- 		</tr> -->
-		
 		<tr>
 			<td><form:label path="email">Email:</form:label></td>
 			<td><form:input path="email"/></td>
 		</tr>
-
+		
 		<tr>
 			<td><form:label path="comments">Comments:</form:label></td>
 			<td><form:textarea path="comments" cols="30" rows="5" htmlEscape="true"/></td>
 		</tr>
 		
-
 	</table>
 	
 	<input type="submit" value="Save" />
