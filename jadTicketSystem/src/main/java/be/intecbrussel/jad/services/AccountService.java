@@ -98,12 +98,16 @@ public class AccountService{
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		
-		// Retrieve existing person via id
+		// Retrieve existing account via id
 		Account existingUser = (Account) session.get(Account.class, user.getId());
 		
 		// Assign updated values to this account
 		existingUser.setFirstName(user.getFirstName());
 		existingUser.setLastName(user.getLastName());
+		existingUser.setUserName(user.getUserName());
+		existingUser.setPassword(user.getPassword());
+		existingUser.setEmail(user.getEmail());
+		existingUser.setComments(user.getComments());
 
 
 		// Save updates

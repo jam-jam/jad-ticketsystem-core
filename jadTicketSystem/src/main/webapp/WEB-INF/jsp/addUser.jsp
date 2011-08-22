@@ -43,7 +43,13 @@
 			<td><form:label path="email">Email:</form:label></td>
 			<td><form:input path="email"/></td>
 		</tr>
+
+		<tr>
+			<td><form:label path="comments">Comments:</form:label></td>
+			<td><form:textarea path="comments" cols="30" rows="5" htmlEscape="true"/></td>
+		</tr>
 		
+
 	</table>
 	
 	<input type="submit" value="Save" />

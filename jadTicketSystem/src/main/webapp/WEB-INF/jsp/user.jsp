@@ -7,6 +7,8 @@
         <title>Main menu</title>
     </h:head>
     <h:body>
+<!--     	<h:graphicImage id="header" value="/resources/images/jad_banner.png"></h:graphicImage> -->
+    	<img src="resources/images/jad_banner.png" alt="JAD WS header" width="100%"/>
     	<ul>
   			<li><a href="newTicket.htm">new Ticket</a><br/></li>
   			<li><a href="<spring:url value="/accounts/account/add.htm" htmlEscape="true" />">Add new user</a></li>

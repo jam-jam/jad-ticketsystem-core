@@ -128,7 +128,7 @@ public class AccountController {
     	//logger.debug("Received request to show edit account page");
     
     	System.out.println("Received request to show edit account page");
-    	
+    	System.out.println(String.format("Id = %d", id));
     	// Retrieve existing user and add to model
     	model.addAttribute("userAttribute", userService.get(id));
     	
@@ -155,7 +155,11 @@ public class AccountController {
     	// We manually assign the id because we disabled it in the JSP page
     	// When a field is disabled it will not be included in the ModelAttribute
     	user.setId(id);
-    	
+    	System.out.println(user);
+    	System.out.println(user.getFirstName());
+    	System.out.println(user.getLastName());
+    	System.out.println(user.getEmail());
+    	System.out.println(user.getPassword());
     	// Delegate to PersonService for editing
     	userService.edit(user);
     	

@@ -72,6 +72,7 @@ public class Account implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	private Date memberSince = new Date();
+	private String comments;
 
 	public Long getId() {
 		return id;
@@ -157,6 +158,14 @@ public class Account implements Serializable {
 		return memberSince;
 	}
 
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
 
 	public Account() {
 	}

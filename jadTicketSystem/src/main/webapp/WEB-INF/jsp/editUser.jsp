@@ -12,8 +12,8 @@
 
 <h1>Edit Account</h1>
 
-<c:url var="saveUrl" value="edit?id=${userAttribute.id}" />
-<form:form modelAttribute="personAttribute" method="POST" action="${saveUrl}">
+<c:url var="saveUrl" value="edit.htm?id=${userAttribute.id}" />
+<form:form modelAttribute="userAttribute" method="POST" action="${saveUrl}">
 	<table>
 		<tr>
 			<td><form:label path="id">Id:</form:label></td>
@@ -43,6 +43,11 @@
 		<tr>
 			<td><form:label path="email">Email:</form:label></td>
 			<td><form:input path="email"/></td>
+		</tr>
+		
+		<tr>
+			<td><form:label path="comments">Comments:</form:label></td>
+			<td><form:textarea path="comments" cols="30" rows="5" htmlEscape="true"/></td>
 		</tr>
 		
 	</table>

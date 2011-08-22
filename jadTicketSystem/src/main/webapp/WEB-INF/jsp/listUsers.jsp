@@ -25,7 +25,7 @@
 	</thead>
 	<tbody>
 	<c:forEach items="${users}" var="user">
-			<c:url var="editUrl" value="/accounts/account/edit.htm?id=${usesr.id}" />
+			<c:url var="editUrl" value="/accounts/account/edit.htm?id=${user.id}" />
 			<c:url var="deleteUrl" value="/accounts/account/delete.htm?id=${user.id}" />
 		<tr>
 			<td><c:out value="${user.firstName}" /></td>
@@ -41,7 +41,8 @@
 	</c:forEach>
 	</tbody>
 </table>
-
+<c:url var="homeUrl" value="/home.htm" />
+<a href="${homeUrl}">Go Home</a>
 <c:if test="${empty users}">
 	There are currently no accounts in the list. <a href="${addUrl}">Add</a> an account.
 </c:if>
