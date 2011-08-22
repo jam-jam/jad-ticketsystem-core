@@ -19,7 +19,7 @@ import be.intecbrussel.jad.model.entities.Ticket;
 import be.intecbrussel.jad.services.TicketService;
 
 @Controller
-// @RequestMapping(value="tick")
+ @RequestMapping(value="/tickets")
 public class TicketController {
 
 	@Resource(name = "ticketService")
@@ -31,7 +31,7 @@ public class TicketController {
 		return "user";
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "newTicket")
+	@RequestMapping(method = RequestMethod.GET, value = "/ticket/add")
 	public String toNewTicket(@ModelAttribute("ticketForm") Ticket ticket) {
 		System.out.println("in toReg");
 		return "newticket";
@@ -52,7 +52,7 @@ public class TicketController {
 		return new String[] { "Scherm", "Hardware", "Toetsenbord" };
 	}
 
-	@RequestMapping(value = "sendToDb")
+	@RequestMapping(method = RequestMethod.POST, value = "/ticket/add")
 	public String putInDB(@ModelAttribute("ticketForm") Ticket ticket,
 			BindingResult br) {
 
@@ -61,7 +61,7 @@ public class TicketController {
 		return "newTicketConfirmed";
 	}
 
-	@RequestMapping(value = "ticketlist")
+	@RequestMapping(value = "/ticket/list")
 	public String goToTicketList(Model model) {
 		List<Ticket> ticketList = ticketService.getAll();
 		model.addAttribute("tickets", ticketList);
@@ -69,7 +69,7 @@ public class TicketController {
 		return "ticketlist";
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "editTicket")
+	@RequestMapping(method = RequestMethod.GET, value = "/ticket/edit")
 	public String editTicket(@RequestParam("aidi") Long id, Model model, @ModelAttribute("ticketToEdit")Ticket ticket) {
 		ticket = ticketService.get(id);
 		model.addAttribute("ticketToEdit",ticket);
@@ -81,7 +81,7 @@ public class TicketController {
 
 	}
 
-	@RequestMapping(method= RequestMethod.POST, value = "saveEditedTicket")
+	@RequestMapping(method= RequestMethod.POST, value = "/ticket/edit")
 	public String saveEditedTicket(@ModelAttribute("ticketToEdit") Ticket ticket,BindingResult br,@RequestParam("aido")Long id,Model model) {
 		System.out.println(ticket.getDescription());
 		ticket.setId(id);
@@ -90,7 +90,7 @@ public class TicketController {
 		goToTicketList(model);
 		return "ticketlist";
 	}
-	@RequestMapping(value="deleteTicket")
+	@RequestMapping(value="/ticket/delete")
 	public String deleteTicket(@ModelAttribute("ticketToEdit")Ticket ticket,@RequestParam("aidi")Long id, Model model){
 		ticket.setId(id);
 		System.out.println("Deleting id :"+ticket.getId());

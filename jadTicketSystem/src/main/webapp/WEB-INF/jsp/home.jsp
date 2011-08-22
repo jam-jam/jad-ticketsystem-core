@@ -17,7 +17,7 @@
 		<div id="lselect">
 			<h3 class="select"><fmt:message key="menuTitle"/></h3>
 				<ul>
-					<li><a href="newTicket.htm"><fmt:message key="newTicket"/></a><br /></li>
+					<li><a href="<spring:url value="/tickets/ticket/add.htm" htmlEscape="true" />"><fmt:message key="newTicket"/></a></li>
 					<li><a href="<spring:url value="/accounts/account/add.htm" htmlEscape="true" />"><fmt:message key="newAccount"/></a></li>
 					<li><a href="<spring:url value="/accounts/account/list.htm" htmlEscape="true" />"><fmt:message key="listAccount"/></a></li>
                 </ul>

@@ -10,7 +10,7 @@
 <body>
 	<!--title, category, omschrijving,  submit button -->
 
-	<form:form commandName="ticketForm" action="sendToDb.htm">
+	<form:form commandName="ticketForm" action="add.htm" method="POST">
 	Title : <form:input path="title" />
 		<br />
 		Category : <form:select path="category">

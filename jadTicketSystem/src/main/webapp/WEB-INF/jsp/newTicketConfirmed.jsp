@@ -12,7 +12,7 @@
 Title : ${ticketForm.title}<br/>
 Category : ${ticketForm.category}<br/>
 Description : ${ticketForm.description}<br/>
-<a href="ticketlist.htm">Ticket List</a>
+<a href="list.htm">Ticket List</a>
 
 </body>
 </html>
