@@ -6,13 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>User Whouaw</title>
+<title>Edition Account</title>
 </head>
 <body>
 
-<h1>Users</h1>
+<h1>Accounts</h1>
 
-<p>You have added a new account at <%= new java.util.Date() %></p>
+<p>You have edited account with id ${id} at <%= new java.util.Date() %></p>
 
 <c:url var="mainUrl" value="/accounts/account/list.htm" />
 <p>Return to <a href="${mainUrl}">User List</a></p>
