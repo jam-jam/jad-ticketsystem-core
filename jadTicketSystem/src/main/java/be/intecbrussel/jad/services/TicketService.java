@@ -10,8 +10,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import be.intecbrussel.jad.model.data.TicketDAO;
-import be.intecbrussel.jad.model.entities.Account;
+
 import be.intecbrussel.jad.model.entities.Ticket;
 
 
@@ -33,9 +32,7 @@ public class TicketService  {
 		Session session = sessionFactory.getCurrentSession();
 		
 		// Save
-		System.out.println("before");
 		session.save(ticket);
-		System.out.println("after");
 	}
 	public List<Ticket> getAll() {
 		//logger.debug("Retrieving all users");

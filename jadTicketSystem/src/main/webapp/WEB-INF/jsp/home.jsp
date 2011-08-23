@@ -20,6 +20,7 @@
 					<li><a href="<spring:url value="/tickets/ticket/add.htm" htmlEscape="true" />"><fmt:message key="newTicket"/></a></li>
 					<li><a href="<spring:url value="/accounts/account/add.htm" htmlEscape="true" />"><fmt:message key="newAccount"/></a></li>
 					<li><a href="<spring:url value="/accounts/account/list.htm" htmlEscape="true" />"><fmt:message key="listAccount"/></a></li>
+					<li><a href="<spring:url value="/categories/category/add.htm" htmlEscape="true" />"><fmt:message key="newCategory"/></a></li>
                 </ul>
 		</div>
 	</div>

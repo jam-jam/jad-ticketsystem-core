@@ -3,6 +3,15 @@ package be.intecbrussel.jad.controllers;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import be.intecbrussel.jad.model.entities.Category;
 import be.intecbrussel.jad.services.CategoryService;
 
@@ -10,98 +19,27 @@ import be.intecbrussel.jad.services.CategoryService;
  *
  * @author Huseyin
  */
+@Controller
+@RequestMapping("/categories")
 public class CategoryController implements Serializable {
-    List<Category> categorylist;
-    Category category;
-    CategoryConverter converter = new CategoryConverter();
-    CategoryService service = new CategoryService();
-
-    public CategoryController(){
-    this.category = new Category();
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public List<Category> getCategorylist() {
-        return categorylist;
-    }
-
-    public void setCategorylist(List<Category> categorylist) {
-        this.categorylist = categorylist;
-    }
-   
-
-    public String newCategory() {
-        try {
-            //GenericService<Ticket> service = new GenericService<Ticket>();
-          // CategoryService service = new CategoryService();
-            service.create(category);
-
-            categorylist = service.findAll();
-            converter.setCategoryList(categorylist);
-
-            this.category = new Category();
-            return "success";
-        } catch (RuntimeException re) {
-            return "failure";
-        }
-    }
-    public String genList(){
-        //CategoryService service = new CategoryService();
-         categorylist = service.findAll();
-         converter.setCategoryList(categorylist);
-        return "success1";
-    }
-    public String  solution(Long id){
-        //CategoryService service = new CategoryService();
-        this.category = service.read(id);
-        if(category == null)
-            return "failed";
-        else
-            return "success";
-
-    }
-
-    public CategoryConverter getConverter() {
-        return converter;
-    }
-
-    public void setConverter(CategoryConverter converter) {
-        this.converter = converter;
-    }
-
-    public String editCategory() {
-        try {
-            
-            service.update(category);
-        } catch (RuntimeException re) {
-            return "failed";
-        }
-        return "success";
-    }
-
-
-    public String deleteCategory() {
-        try {
-            //CategoryService service = new CategoryService();
-            service.delete(category);
-            categorylist = service.findAll();
-            this.category = new Category();
-              return "successdelete";
-        } catch (RuntimeException re) {
-            return "failed";
-        }
-      
-    }
-
-    public String trickMethods(Category category){
-        this.category = category;
-        return "success";
-    }
+	@Resource (name="categoryService")
+	private CategoryService cs;
+	@RequestMapping(method=RequestMethod.GET, value="/category/add")
+	
+	public String toNewCat(@ModelAttribute("catForm")  Category cat) {
+		return "addCategory";
+	}
+	@RequestMapping(method = RequestMethod.POST, value = "/category/add")
+	public String putInDB(@ModelAttribute("catForm") Category cat,
+			BindingResult br) {
+		cs.add(cat);
+		return "addedCategory";
+	}	
+	@RequestMapping(method = RequestMethod.GET, value = "/category/list")
+	public String gotoList (Model model){
+	List <Category> categoryList = cs.getAll();
+	model.addAttribute("categoryList", categoryList);
+	return "categoryList";
+	}
 }
+   

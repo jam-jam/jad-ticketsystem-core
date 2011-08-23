@@ -65,7 +65,7 @@ public class TicketController {
 	public String goToTicketList(Model model) {
 		List<Ticket> ticketList = ticketService.getAll();
 		model.addAttribute("tickets", ticketList);
-		System.out.println(ticketList.size());
+
 		return "ticketlist";
 	}
 
