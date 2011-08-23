@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import be.intecbrussel.jad.model.entities.Category;
 import be.intecbrussel.jad.services.CategoryService;
@@ -41,5 +42,24 @@ public class CategoryController implements Serializable {
 	model.addAttribute("categoryList", categoryList);
 	return "categoryList";
 	}
+	@RequestMapping(method = RequestMethod.GET, value = "/category/edit")
+	public String gotoEditCategory (@RequestParam("aidi")Long id, Model model){
+		Category category = cs.get(id);
+		model.addAttribute("catToEdit", category);
+		return "editCategory";
+	}
+	@RequestMapping(method = RequestMethod.POST, value = "/category/edit")
+	public String editCategory (@RequestParam("aido")Long id, @ModelAttribute("catToEdit") Category category, Model model){
+		category.setId(id);
+		cs.edit(category);
+		gotoList( model);
+		return "categoryList";
+	}
+	@RequestMapping(method=RequestMethod.GET, value="/category/delete")
+		public String deleteCategory(@RequestParam("aidi")Long id, @ModelAttribute("catToEdit") Category category,Model model){
+			cs.delete(id);
+			return "deletedCategory";
+		}
+	
 }
    

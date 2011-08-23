@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import be.intecbrussel.jad.model.entities.Account;
+import be.intecbrussel.jad.model.entities.Category;
 import be.intecbrussel.jad.model.entities.Ticket;
+import be.intecbrussel.jad.services.CategoryService;
 import be.intecbrussel.jad.services.TicketService;
 
 @Controller
@@ -24,6 +25,8 @@ public class TicketController {
 
 	@Resource(name = "ticketService")
 	private TicketService ticketService;
+	@Resource(name="categoryService")
+	private CategoryService cs;
 
 	@RequestMapping(method = RequestMethod.GET, value = "ticket")
 	public String toReg() {
@@ -32,25 +35,25 @@ public class TicketController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/ticket/add")
-	public String toNewTicket(@ModelAttribute("ticketForm") Ticket ticket) {
+	public String toNewTicket(@ModelAttribute("ticketForm") Ticket ticket,Model model) {
 		System.out.println("in toReg");
+		List<Category> catList = cs.getAll();
+		String [] nameList = new String[catList.size()];
+	for (int i=0;i<catList.size(); i++){
+		nameList[i]=catList.get(i).getName();
+		System.out.println("cat : "+nameList[i]);
+	}
+	model.addAttribute("categoryList", nameList);
+		for (String c : nameList){
+			System.out.println("name cat : "+c);
+		}
+	System.out.println("aan het einde van method");
 		return "newticket";
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "newUser")
-	public String addAccount(Model model) {
-		System.out.println("prepare to create a new user");
-		model.addAttribute("userAttribute", new Account());
-
-		return "addUser";
-	}
-
-
 	
-	@ModelAttribute("categoryList")
-	public String[] getCheckboses() {
-		return new String[] { "Scherm", "Hardware", "Toetsenbord" };
-	}
+
+
 
 	@RequestMapping(method = RequestMethod.POST, value = "/ticket/add")
 	public String putInDB(@ModelAttribute("ticketForm") Ticket ticket,
