@@ -2,5 +2,5 @@
 .settings/
 .springBeans
 jadTicketSystem/target/*
-jadTicketSystem2/src/main/webapp/WEB-INF/jsp/editTicket.jsp
+../jadTicketSystem2/src/main/webapp/WEB-INF/jsp/editTicket.jsp
 
