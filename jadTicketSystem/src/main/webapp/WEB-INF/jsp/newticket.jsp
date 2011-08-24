@@ -9,20 +9,35 @@
 </head>
 <body>
 	<!--title, category, omschrijving,  submit button -->
-
-	<form:form commandName="ticketForm" action="add.htm" method="POST">
-	Title : <form:input path="title" />
-		<br />
-		Category : <form:select path="category.name">
-			<form:option value="-">-- Make a selection --</form:option>
-			<form:options items="${categoryList}"  />
+	<table>
+		<form:form commandName="ticketForm" action="add.htm" method="POST">
+		<tr>
+		<td>
+	Title : </td><td> <form:input path="title" />
 			
-		</form:select>
-	Description : 	<form:textarea path="description" />
-		<br />
-		<input type="submit" value="Submit" />
-		<br />
-	</form:form>
+			</td>
+			</tr>
+			<tr>
+			<td>
+		Category :</td><td> <form:select path="category.name">
+				<form:option value="-">-- Make a selection --</form:option>
+				<form:options items="${categoryList}" />
+
+			</form:select>
+			</td>
+			</tr>
+			<tr>
+			<td>
+	Description :</td><td><form:textarea path="description" />
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<input type="submit" value="Submit" />
+			</td>
+			</tr>
+		</form:form>
+	</table>
 </body>
 </html>
 
