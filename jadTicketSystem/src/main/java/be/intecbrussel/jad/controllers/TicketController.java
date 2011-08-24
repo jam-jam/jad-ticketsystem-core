@@ -20,12 +20,12 @@ import be.intecbrussel.jad.services.CategoryService;
 import be.intecbrussel.jad.services.TicketService;
 
 @Controller
- @RequestMapping(value="/tickets")
+@RequestMapping(value = "/tickets")
 public class TicketController {
 
 	@Resource(name = "ticketService")
 	private TicketService ticketService;
-	@Resource(name="categoryService")
+	@Resource(name = "categoryService")
 	private CategoryService cs;
 
 	@RequestMapping(method = RequestMethod.GET, value = "ticket")
@@ -35,25 +35,17 @@ public class TicketController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/ticket/add")
-	public String toNewTicket(@ModelAttribute("ticketForm") Ticket ticket,Model model) {
+	public String toNewTicket(@ModelAttribute("ticketForm") Ticket ticket,
+			Model model) {
 		System.out.println("in toReg");
 		List<Category> catList = cs.getAll();
-		String [] nameList = new String[catList.size()];
-	for (int i=0;i<catList.size(); i++){
-		nameList[i]=catList.get(i).getName();
-		System.out.println("cat : "+nameList[i]);
-	}
-	model.addAttribute("categoryList", nameList);
-		for (String c : nameList){
-			System.out.println("name cat : "+c);
+		String[] nameList = new String[catList.size()];
+		for (int i = 0; i < catList.size(); i++) {
+			nameList[i] = catList.get(i).getName();
 		}
-	System.out.println("aan het einde van method");
+		model.addAttribute("categoryList", nameList);
 		return "newticket";
 	}
-
-	
-
-
 
 	@RequestMapping(method = RequestMethod.POST, value = "/ticket/add")
 	public String putInDB(@ModelAttribute("ticketForm") Ticket ticket,
@@ -73,30 +65,38 @@ public class TicketController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/ticket/edit")
-	public String editTicket(@RequestParam("aidi") Long id, Model model, @ModelAttribute("ticketToEdit")Ticket ticket) {
+	public String editTicket(@RequestParam("aidi") Long id, Model model,
+			@ModelAttribute("ticketToEdit") Ticket ticket) {
 		ticket = ticketService.get(id);
-		model.addAttribute("ticketToEdit",ticket);
-		System.out.println(ticket.getTitle());
-		System.out.println("Id1 : " + ticket.getId());
-		
-		
+		model.addAttribute("ticketToEdit", ticket);
+		List<Category> catList = cs.getAll();
+		String[] nameList = new String[catList.size()];
+		for (int i = 0; i < catList.size(); i++) {
+			nameList[i] = catList.get(i).getName();
+		}
+		model.addAttribute("categoryList", nameList);
+
 		return "editTicket";
 
 	}
 
-	@RequestMapping(method= RequestMethod.POST, value = "/ticket/edit")
-	public String saveEditedTicket(@ModelAttribute("ticketToEdit") Ticket ticket,BindingResult br,@RequestParam("aido")Long id,Model model) {
+	@RequestMapping(method = RequestMethod.POST, value = "/ticket/edit")
+	public String saveEditedTicket(
+			@ModelAttribute("ticketToEdit") Ticket ticket, BindingResult br,
+			@RequestParam("aido") Long id, Model model) {
 		System.out.println(ticket.getDescription());
 		ticket.setId(id);
-		System.out.println("Id2 : "+ticket.getId());
+		System.out.println("Id2 : " + ticket.getId());
 		ticketService.edit(ticket);
 		goToTicketList(model);
 		return "ticketlist";
 	}
-	@RequestMapping(value="/ticket/delete")
-	public String deleteTicket(@ModelAttribute("ticketToEdit")Ticket ticket,@RequestParam("aidi")Long id, Model model){
+
+	@RequestMapping(value = "/ticket/delete")
+	public String deleteTicket(@ModelAttribute("ticketToEdit") Ticket ticket,
+			@RequestParam("aidi") Long id, Model model) {
 		ticket.setId(id);
-		System.out.println("Deleting id :"+ticket.getId());
+		System.out.println("Deleting id :" + ticket.getId());
 		ticketService.delete(ticket.getId());
 		goToTicketList(model);
 		return "ticketlist";

@@ -46,7 +46,7 @@ public class Ticket implements Serializable {
     }
 
     
-    @ManyToOne()
+    @ManyToOne(cascade=CascadeType.ALL)
     private Category category;
 
     public Ticket() {

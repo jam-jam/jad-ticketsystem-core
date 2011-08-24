@@ -18,7 +18,6 @@
 			<form:options items="${categoryList}"  />
 			
 		</form:select>
-		<br />
 	Description : 	<form:textarea path="description" />
 		<br />
 		<input type="submit" value="Submit" />

@@ -70,6 +70,7 @@ public class TicketService  {
 		// Assign updated values to this account
 		existingTicket.setTitle(ticket.getTitle());
 		existingTicket.setDescription(ticket.getDescription());
+		existingTicket.setCategory(ticket.getCategory());
 		System.out.println("existing ticket new description : " +existingTicket.getDescription());
 //		existingTicket.setCategory(ticket.getCategory());
 //		existingTicket.setContact(ticket.getContact());
