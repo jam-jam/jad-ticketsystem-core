@@ -9,19 +9,31 @@
 </head>
 <body>
 	<!--title, category, omschrijving,  submit button -->
-	<form:form commandName="ticketToEdit"  action="edit.htm?aido=${ticketToEdit.id}"> 
-	Title : <form:input path="title" />
-		<br />
-		Category : <form:select path="category.name">
-			<form:option value="-">-- Make a selection --</form:option>
-			<form:options items="${categoryList}"  />
-			
-		</form:select>
-	Description : 	
-	<form:textarea path="description" cols="20" rows="5"	/>
-	
-	<input type="submit" value="Save changes"/>
-	
+	<form:form commandName="ticketToEdit"
+		action="edit.htm?aido=${ticketToEdit.id}">
+		<table>
+			<tr>
+				<td>Title :</td>
+				<td><form:input path="title" />
+				</td>
+			</tr>
+			<tr>
+				<td><br /> Category :</td>
+				<td><form:select path="category.name">
+						<form:option value="-">-- Make a selection --</form:option>
+						<form:options items="${categoryList}" />
+
+					</form:select></td>
+			</tr>
+			<tr>
+				<td>Description :</td>
+				<td><form:textarea path="description" cols="20" rows="5" />
+				</td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Save changes" /></td>
+			</tr>
+		</table>
 
 
 	</form:form>

@@ -10,13 +10,28 @@
 <body>
 	<!--title, category, omschrijving,  submit button -->
 	<form:form commandName="catToEdit"  action="edit.htm?aido=${catToEdit.id}"> 
-	Name : <form:input path="name" />
-		<br />
+	<table>
+	<tr>
+	<td>
+	Name : </td><td><form:input path="name" /></td>
+	</tr>
 
-	Description : 	
+<tr>
+<td>
+	Description : </td>	
+	<td>
 	<form:textarea path="description" cols="20" rows="5"	/>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	
+	
 	
 	<input type="submit" value="Save changes"/>
+	</td>
+	</tr>
+	</table>
 	
 
 

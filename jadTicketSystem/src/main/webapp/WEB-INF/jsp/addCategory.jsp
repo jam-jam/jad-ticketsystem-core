@@ -11,12 +11,23 @@
 	<!--title, category, omschrijving,  submit button -->
 
 	<form:form commandName="catForm" action="add.htm" method="POST">
-	Title : <form:input path="name" />
-		<br />
-	Description : 	<form:textarea path="description" />
-		<br />
+	<table>
+	<tr>
+	<td>
+	Title :</td><td> <form:input path="name" /></td>
+	</tr>
+	<tr>
+	
+	<td>
+	Description : </td><td>	<form:textarea path="description" />
+</td>	
+</tr>
+<tr>
+<td>
 		<input type="submit" value="Submit" />
-		<br />
+		</td>
+		</tr>
+		</table>
 	</form:form>
 </body>
 </html>
